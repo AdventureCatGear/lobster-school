@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Make Your Money Work — Two Ideas Worth Knowing</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #181c27;
+      --surface2: #1e2333;
+      --border: rgba(255,255,255,0.07);
+      --text: #e8eaf0;
+      --muted: #8b91a8;
+      --accent-blue: #4f8ef7;
+      --accent-orange: #f7a24f;
+      --accent-green: #4fcf8e;
+      --accent-red: #f76f6f;
+      --strc-color: #f7a24f;
+      --sata-color: #4f8ef7;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 64px 24px 48px;
+      background: linear-gradient(180deg, #12172b 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent-green);
+      background: rgba(79,207,142,0.1);
+      border: 1px solid rgba(79,207,142,0.2);
+      border-radius: 999px;
+      padding: 4px 14px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 6vw, 52px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #fff 0%, #8b91a8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: clamp(15px, 2.5vw, 18px);
+      color: var(--muted);
+      max-width: 540px;
+      margin: 0 auto 36px;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 24px;
+      font-size: 13px;
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-stat span { color: var(--muted); font-size: 12px; }
+
+    .hero-stat.strc strong { color: var(--strc-color); }
+    .hero-stat.sata strong { color: var(--sata-color); }
+
+    /* ── LAYOUT ── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 56px 0 28px;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .card-header {
+      padding: 28px 28px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .card-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 4px 12px;
+      margin-bottom: 10px;
+    }
+
+    .card-badge.strc {
+      color: var(--strc-color);
+      background: rgba(247,162,79,0.1);
+      border: 1px solid rgba(247,162,79,0.25);
+    }
+
+    .card-badge.sata {
+      color: var(--sata-color);
+      background: rgba(79,142,247,0.1);
+      border: 1px solid rgba(79,142,247,0.25);
+    }
+
+    .card-title {
+      font-size: clamp(20px, 4vw, 26px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .card-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .card-yield {
+      text-align: right;
+      flex-shrink: 0;
+    }
+
+    .yield-number {
+      font-size: clamp(36px, 7vw, 52px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .yield-number.strc { color: var(--strc-color); }
+    .yield-number.sata { color: var(--sata-color); }
+
+    .yield-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .card-body { padding: 24px 28px; }
+
+    .plain-english {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      font-size: 15px;
+      color: var(--text);
+      margin-bottom: 24px;
+      line-height: 1.7;
+    }
+
+    .plain-english strong {
+      color: #fff;
+    }
+
+    /* ── STATS ROW ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .stat-box {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    .stat-box .stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .stat-box .stat-value {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    .stat-box .stat-note {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ── TWO COLUMNS ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    @media (max-width: 540px) {
+      .two-col { grid-template-columns: 1fr; }
+    }
+
+    .pro-con-box {
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+
+    .pro-con-box.pros {
+      background: rgba(79,207,142,0.06);
+      border: 1px solid rgba(79,207,142,0.18);
+    }
+
+    .pro-con-box.cons {
+      background: rgba(247,111,111,0.06);
+      border: 1px solid rgba(247,111,111,0.18);
+    }
+
+    .pro-con-title {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .pros .pro-con-title { color: var(--accent-green); }
+    .cons .pro-con-title { color: var(--accent-red); }
+
+    .pro-con-list {
+      list-style: none;
+      font-size: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .pro-con-list li {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      line-height: 1.5;
+    }
+
+    .pro-con-list li::before {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .pros .pro-con-list li::before {
+      content: '✓';
+      color: var(--accent-green);
+      font-weight: 700;
+    }
+
+    .cons .pro-con-list li::before {
+      content: '!';
+      color: var(--accent-red);
+      font-weight: 700;
+    }
+
+    /* ── TAX CALLOUT ── */
+    .tax-callout {
+      background: linear-gradient(135deg, rgba(79,207,142,0.08) 0%, rgba(79,142,247,0.08) 100%);
+      border: 1px solid rgba(79,207,142,0.2);
+      border-radius: 12px;
+      padding: 16px 20px;
+      font-size: 14px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      margin-bottom: 0;
+    }
+
+    .tax-callout .icon {
+      font-size: 22px;
+      flex-shrink: 0;
+      margin-top: -2px;
+    }
+
+    .tax-callout strong { color: var(--accent-green); }
+
+    /* ── HOW IT PAYS ── */
+    .pay-timeline {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 20px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .pay-step {
+      flex: 1;
+      text-align: center;
+      min-width: 80px;
+    }
+
+    .pay-step .dot {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      margin: 0 auto 8px;
+      font-weight: 700;
+    }
+
+    .pay-step.strc .dot { background: rgba(247,162,79,0.15); color: var(--strc-color); border: 1.5px solid var(--strc-color); }
+    .pay-step.sata .dot { background: rgba(79,142,247,0.15); color: var(--sata-color); border: 1.5px solid var(--sata-color); }
+
+    .pay-step .step-label { font-size: 11px; color: var(--muted); line-height: 1.4; }
+    .pay-step .step-val { font-size: 13px; font-weight: 600; color: var(--text); }
+
+    .pay-arrow {
+      color: var(--muted);
+      font-size: 16px;
+      padding: 0 4px;
+      flex-shrink: 0;
+      margin-bottom: 22px;
+    }
+
+    /* ── COMPARE TABLE ── */
+    .compare-section {
+      margin: 0 0 56px;
+    }
+
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    .compare-table th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .compare-table td {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .compare-table tr:last-child td { border-bottom: none; }
+
+    .compare-table .row-label {
+      color: var(--muted);
+      font-size: 13px;
+      width: 34%;
+    }
+
+    .compare-table .col-strc { color: var(--strc-color); font-weight: 600; }
+    .compare-table .col-sata { color: var(--sata-color); font-weight: 600; }
+
+    .compare-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      padding: 40px 24px 48px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .footer a {
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .disclaimer {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      font-size: 12px;
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto 24px;
+      text-align: left;
+      line-height: 1.7;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 600px) {
+      .card-header { flex-direction: column; }
+      .card-yield { text-align: left; }
+      .card-body { padding: 20px; }
+      .card-header { padding: 20px 20px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">For Jack · June 2026</div>
+    <h1>Stop letting your<br/>cash lose value.</h1>
+    <p>Two straightforward investments that pay you every single month — while your money stays liquid and accessible.</p>
+    <div class="hero-stats">
+      <div class="hero-stat strc">
+        <strong>11.5%</strong>
+        <span>STRC annual yield</span>
+      </div>
+      <div class="hero-stat sata">
+        <strong>13.88%</strong>
+        <span>SATA effective yield</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <p class="section-label">The two ideas</p>
+
+    <!-- ══════════════════════════════════════
+         CARD 1 — STRC
+    ══════════════════════════════════════ -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-badge strc">Idea #1 &nbsp;·&nbsp; STRC</div>
+          <div class="card-title">Strategy Preferred Stock</div>
+          <div class="card-subtitle">Issued by Strategy Inc (formerly MicroStrategy) · Nasdaq: STRC</div>
+        </div>
+        <div class="card-yield">
+          <div class="yield-number strc">11.5%</div>
+          <div class="yield-label">current annual yield</div>
+        </div>
+      </div>
+
+      <div class="card-body">
+
+        <div class="plain-english">
+          Strategy Inc is the largest corporate holder of Bitcoin on earth. Instead of buying their stock and riding the Bitcoin rollercoaster, <strong>STRC lets you lend them money and collect a steady monthly payment</strong> no matter what Bitcoin does. Think of it like a high-yield bond — you sit near the top of the repayment ladder, not at the bottom.
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-label">Par value</div>
+            <div class="stat-value">$100</div>
+            <div class="stat-note">target price per share</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Monthly payout</div>
+            <div class="stat-value">~$0.96</div>
+            <div class="stat-note">per share, paid monthly</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Current price</div>
+            <div class="stat-value">~$99.62</div>
+            <div class="stat-note">near par — slight discount</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Rate since launch</div>
+            <div class="stat-value">7 raises</div>
+            <div class="stat-note">started at 9% in July 2025</div>
+          </div>
+        </div>
+
+        <!-- Tax callout — STRC's killer feature -->
+        <div class="tax-callout" style="margin-bottom: 20px;">
+          <div class="icon">💡</div>
+          <div>
+            <strong>The tax angle most people miss:</strong> STRC dividends are classified as <em>Return of Capital</em> — which means the IRS does <strong>not</strong> tax them as income when you receive them. Instead, each payment slowly reduces your cost basis. You only pay tax (at low long-term rates) when you eventually sell. Strategy expects this treatment to last <strong>10+ years</strong>. That's not tax-free, but it's the next best thing: tax-deferred compounding.
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="pro-con-box pros">
+            <div class="pro-con-title">Why it's appealing</div>
+            <ul class="pro-con-list">
+              <li>Monthly income that doesn't depend on Bitcoin's price</li>
+              <li>Dividends are tax-deferred (Return of Capital)</li>
+              <li>Variable rate adjusts upward to keep price near $100</li>
+              <li>Rate has been raised 7 times — trend is upward</li>
+              <li>Issued by one of the most Bitcoin-capitalized companies alive</li>
+            </ul>
+          </div>
+          <div class="pro-con-box cons">
+            <div class="pro-con-title">Risks to know</div>
+            <ul class="pro-con-list">
+              <li>Strategy could face financial trouble — dividends can be cut</li>
+              <li>If you sell below $100, you may take a small loss</li>
+              <li>Not FDIC insured — this is an investment, not a bank account</li>
+              <li>ROC tax treatment could theoretically change in future</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-top: 16px; padding: 14px 18px; background: var(--surface2); border-radius: 10px; font-size: 13px; color: var(--muted);">
+          <strong style="color: var(--text);">Bottom line:</strong> Put in $1,000 → collect ~$9.58/month, tax-deferred. It compounds quietly. After 10 years of reinvesting, that $1,000 could grow to <strong style="color: var(--strc-color);">~$2,970</strong> without ever writing a check to the IRS mid-journey.
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════
+         CARD 2 — SATA
+    ══════════════════════════════════════ -->
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-badge sata">Idea #2 &nbsp;·&nbsp; SATA</div>
+          <div class="card-title">Strive Preferred Stock</div>
+          <div class="card-subtitle">Issued by Strive Inc · Nasdaq: SATA</div>
+        </div>
+        <div class="card-yield">
+          <div class="yield-number sata">13.88%</div>
+          <div class="yield-label">effective annual yield</div>
+        </div>
+      </div>
+
+      <div class="card-body">
+
+        <div class="plain-english">
+          Strive is a Bitcoin-focused asset management firm. SATA is their preferred stock — essentially a <strong>priority claim on Strive's assets</strong>, which are backed ~1.9x by their Bitcoin holdings and cash. The headline number: <strong>13% stated rate</strong>, but because they just switched to paying dividends <em>every single day</em>, the effective compounded yield lands at <strong>~13.88%</strong>. That's a U.S. market first.
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-label">Par value</div>
+            <div class="stat-value">$100</div>
+            <div class="stat-note">target price per share</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Stated rate</div>
+            <div class="stat-value">13%</div>
+            <div class="stat-note">13.88% effective daily</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Current price</div>
+            <div class="stat-value">~$97.71</div>
+            <div class="stat-note">slight discount — buying in cheap</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">Asset coverage</div>
+            <div class="stat-value">1.9×</div>
+            <div class="stat-note">BTC + cash backing</div>
+          </div>
+        </div>
+
+        <!-- Daily pay explainer -->
+        <div class="tax-callout" style="margin-bottom: 20px; border-color: rgba(79,142,247,0.2); background: rgba(79,142,247,0.06);">
+          <div class="icon">📅</div>
+          <div>
+            <strong style="color: var(--sata-color);">First daily-dividend preferred stock in the U.S.:</strong> As of June 16, 2026, SATA pays dividends every trading day — not monthly. That means your money compounds faster, and you always have cash flowing in. The stated rate is 13%; with daily compounding the effective yield is <strong style="color: var(--sata-color);">~13.88%</strong>.
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="pro-con-box pros">
+            <div class="pro-con-title">Why it's appealing</div>
+            <ul class="pro-con-list">
+              <li>Highest yield of any preferred stock in this class</li>
+              <li>Daily dividend payments — compounding starts immediately</li>
+              <li>1.9× asset coverage means real backing behind the promise</li>
+              <li>Currently trading ~$2 below par — buying at a small discount</li>
+              <li>Board adjusts rate to keep price in $95–$105 range</li>
+            </ul>
+          </div>
+          <div class="pro-con-box cons">
+            <div class="pro-con-title">Risks to know</div>
+            <ul class="pro-con-list">
+              <li>Asset backing is Bitcoin — a BTC crash reduces the cushion</li>
+              <li>Board can lower the dividend rate unilaterally</li>
+              <li>Currently slightly below $100 par — selling now = small loss</li>
+              <li>Strive is newer and smaller than Strategy</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-top: 16px; padding: 14px 18px; background: var(--surface2); border-radius: 10px; font-size: 13px; color: var(--muted);">
+          <strong style="color: var(--text);">Bottom line:</strong> Put in $1,000 → collect income <em>every trading day</em>. At 13.88% effective yield, that's roughly <strong style="color: var(--sata-color);">$138.80/year</strong> on $1,000 — or about <strong style="color: var(--sata-color);">$11.57/month</strong> averaged out. The daily compounding keeps working even while you sleep.
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         SIDE-BY-SIDE COMPARE
+    ══════════════════════════════════════ -->
+    <p class="section-label">Side by side</p>
+
+    <div class="compare-section">
+      <div class="card">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th class="row-label"></th>
+              <th style="color: var(--strc-color);">STRC</th>
+              <th style="color: var(--sata-color);">SATA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="row-label">Issued by</td>
+              <td class="col-strc">Strategy Inc (MSTR)</td>
+              <td class="col-sata">Strive Inc</td>
+            </tr>
+            <tr>
+              <td class="row-label">Annual yield</td>
+              <td class="col-strc">11.5%</td>
+              <td class="col-sata">13.88% effective</td>
+            </tr>
+            <tr>
+              <td class="row-label">How often paid</td>
+              <td class="col-strc">Monthly</td>
+              <td class="col-sata">Every trading day</td>
+            </tr>
+            <tr>
+              <td class="row-label">Current price</td>
+              <td class="col-strc">~$99.62 (near par)</td>
+              <td class="col-sata">~$97.71 (discount)</td>
+            </tr>
+            <tr>
+              <td class="row-label">Tax treatment</td>
+              <td class="col-strc">Return of Capital — deferred</td>
+              <td class="col-sata">Ordinary income</td>
+            </tr>
+            <tr>
+              <td class="row-label">Backing</td>
+              <td class="col-strc">Strategy's BTC & balance sheet</td>
+              <td class="col-sata">1.9× BTC + cash</td>
+            </tr>
+            <tr>
+              <td class="row-label">Best for</td>
+              <td class="col-strc">Tax efficiency + steady growth</td>
+              <td class="col-sata">Maximum income, daily flow</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- /container -->
+
+  <!-- FOOTER / DISCLAIMER -->
+  <footer class="footer">
+    <div class="disclaimer">
+      <strong>Not financial advice.</strong> This page is for educational purposes only — it reflects publicly available information as of June 2026. Both products carry real risk and are not FDIC insured. Do your own research before investing. Past dividend rates are not a guarantee of future payments. Consider speaking with a financial advisor about your personal situation.
+    </div>
+    <p>Data sourced from Strategy Inc, Strive Inc, Nasdaq, CoinDesk, and StockAnalysis · June 2026</p>
+  </footer>
+
+</body>
+</html>
