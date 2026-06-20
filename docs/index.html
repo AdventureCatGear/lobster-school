@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Make Your Money Work — Two Ideas Worth Knowing</title>
+  <style>
+    :root {
+      --bg: #0c0f1a;
+      --surface: #141828;
+      --surface2: #1a1f30;
+      --border: rgba(255,255,255,0.07);
+      --text: #dde1ef;
+      --muted: #7b8199;
+      --strc: #f5a623;
+      --sata: #4a90e2;
+      --green: #3ecf8e;
+      --red: #e25555;
+      --yellow: #f5d020;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 64px 24px 52px;
+      background: radial-gradient(ellipse at 50% 0%, #1a2040 0%, var(--bg) 70%);
+      border-bottom: 1px solid var(--border);
+    }
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: rgba(62,207,142,0.1);
+      border: 1px solid rgba(62,207,142,0.22);
+      border-radius: 999px;
+      padding: 4px 16px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: clamp(30px, 7vw, 56px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.12;
+      margin-bottom: 16px;
+      background: linear-gradient(150deg, #fff 30%, #6b7294 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(15px, 2.5vw, 18px);
+      color: var(--muted);
+      max-width: 500px;
+      margin: 0 auto 36px;
+    }
+    .hero-chips {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .hero-chip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 28px;
+      min-width: 150px;
+    }
+    .hero-chip .big {
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      display: block;
+    }
+    .hero-chip .lbl { font-size: 12px; color: var(--muted); margin-top: 5px; display: block; }
+    .hero-chip.strc .big { color: var(--strc); }
+    .hero-chip.sata .big { color: var(--sata); }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 880px; margin: 0 auto; padding: 0 18px; }
+    .section-label {
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 56px 0 26px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      overflow: hidden;
+      margin-bottom: 22px;
+    }
+    .card-header {
+      padding: 28px 28px 22px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 3px 12px;
+      margin-bottom: 9px;
+    }
+    .badge.strc { color: var(--strc); background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.25); }
+    .badge.sata { color: var(--sata); background: rgba(74,144,226,0.1); border: 1px solid rgba(74,144,226,0.25); }
+    .card-title { font-size: clamp(20px, 4vw, 26px); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 4px; }
+    .card-sub { font-size: 13px; color: var(--muted); }
+    .card-yield { text-align: right; flex-shrink: 0; }
+    .yield-num { font-size: clamp(34px, 7vw, 50px); font-weight: 900; letter-spacing: -0.03em; line-height: 1; }
+    .yield-num.strc { color: var(--strc); }
+    .yield-num.sata { color: var(--sata); }
+    .yield-lbl { font-size: 12px; color: var(--muted); margin-top: 5px; }
+    .card-body { padding: 24px 28px; }
+
+    /* ── PLAIN ENGLISH ── */
+    .plain {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 22px;
+      font-size: 15px;
+      line-height: 1.75;
+      margin-bottom: 22px;
+      color: var(--text);
+    }
+    .plain strong { color: #fff; }
+
+    /* ── STATS ── */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+    .stat {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 13px 15px;
+    }
+    .stat .s-lbl { font-size: 11px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin-bottom: 5px; }
+    .stat .s-val { font-size: 17px; font-weight: 800; letter-spacing: -0.02em; color: #fff; }
+    .stat .s-note { font-size: 11px; color: var(--muted); margin-top: 2px; line-height: 1.4; }
+
+    /* ── SECTION HEADS ── */
+    .sub-head {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 22px 0 10px;
+    }
+
+    /* ── MECHANISM BLOCK ── */
+    .mech {
+      border-radius: 14px;
+      padding: 20px 22px;
+      margin-bottom: 20px;
+    }
+    .mech.s { background: rgba(245,166,35,0.05); border: 1px solid rgba(245,166,35,0.16); }
+    .mech.a { background: rgba(74,144,226,0.05); border: 1px solid rgba(74,144,226,0.16); }
+    .mech p { font-size: 14px; color: var(--text); line-height: 1.75; margin-bottom: 10px; }
+    .mech p:last-child { margin-bottom: 0; }
+    .mech em { color: var(--muted); font-style: normal; }
+    .mech strong { color: #fff; }
+
+    .flow {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      margin: 14px 0;
+      overflow-x: auto;
+    }
+    .flow-step {
+      flex: 1;
+      min-width: 88px;
+      text-align: center;
+      padding: 10px 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    .flow-step .fi { font-size: 18px; display: block; margin-bottom: 4px; }
+    .flow-arr { align-self: center; padding: 0 7px; color: var(--muted); font-size: 15px; flex-shrink: 0; }
+
+    /* ── CALLOUTS ── */
+    .callout {
+      border-radius: 13px;
+      padding: 16px 20px;
+      margin-bottom: 18px;
+      display: flex;
+      gap: 13px;
+      align-items: flex-start;
+    }
+    .callout .ci { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    .callout h4 { font-size: 13px; font-weight: 700; margin-bottom: 5px; }
+    .callout p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+    .callout strong { color: var(--text); }
+    .callout a { color: var(--sata); text-decoration: underline; text-underline-offset: 3px; }
+    .callout a.strc-link { color: var(--strc); }
+
+    .callout.tax { background: rgba(62,207,142,0.06); border: 1px solid rgba(62,207,142,0.2); }
+    .callout.tax h4 { color: var(--green); }
+    .callout.sustain-ok { background: rgba(62,207,142,0.06); border: 1px solid rgba(62,207,142,0.2); }
+    .callout.sustain-ok h4 { color: var(--green); }
+    .callout.sustain-warn { background: rgba(245,208,32,0.06); border: 1px solid rgba(245,208,32,0.2); }
+    .callout.sustain-warn h4 { color: var(--yellow); }
+    .callout.quote { background: var(--surface2); border: 1px solid var(--border); }
+    .callout.quote h4 { color: var(--muted); font-weight: 400; font-size: 14px; font-style: italic; line-height: 1.6; margin-bottom: 0; }
+
+    /* ── PROS / CONS ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 18px; }
+    @media (max-width: 520px) { .two-col { grid-template-columns: 1fr; } }
+    .box { border-radius: 12px; padding: 14px 16px; }
+    .box.pros { background: rgba(62,207,142,0.05); border: 1px solid rgba(62,207,142,0.17); }
+    .box.cons { background: rgba(226,85,85,0.05); border: 1px solid rgba(226,85,85,0.17); }
+    .box-title { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
+    .box.pros .box-title { color: var(--green); }
+    .box.cons .box-title { color: var(--red); }
+    .box ul { list-style: none; display: flex; flex-direction: column; gap: 7px; font-size: 13px; }
+    .box ul li { display: flex; gap: 7px; align-items: flex-start; line-height: 1.5; }
+    .box.pros ul li::before { content: '✓'; color: var(--green); font-weight: 700; flex-shrink: 0; }
+    .box.cons ul li::before { content: '✕'; color: var(--red); font-weight: 700; flex-shrink: 0; }
+
+    /* ── BOTTOM LINE ── */
+    .bottom-line {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 17px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .bottom-line strong { color: #fff; }
+
+    /* ── CALCULATOR ── */
+    .calc-card { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; overflow: hidden; margin-bottom: 22px; }
+    .calc-head { padding: 22px 28px 18px; border-bottom: 1px solid var(--border); }
+    .calc-head h2 { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; }
+    .calc-head p { font-size: 13px; color: var(--muted); margin-top: 5px; }
+    .calc-body { padding: 22px 28px; }
+    .calc-row { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; flex-wrap: wrap; }
+    .calc-row label { font-size: 14px; color: var(--muted); white-space: nowrap; }
+    .input-wrap { position: relative; flex: 1; min-width: 150px; max-width: 240px; }
+    .input-wrap span { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--muted); font-size: 17px; font-weight: 600; pointer-events: none; }
+    .input-wrap input {
+      width: 100%;
+      background: var(--surface2);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 11px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      padding: 10px 13px 10px 28px;
+      outline: none;
+      transition: border-color 0.15s;
+      -moz-appearance: textfield;
+    }
+    .input-wrap input::-webkit-outer-spin-button,
+    .input-wrap input::-webkit-inner-spin-button { -webkit-appearance: none; }
+    .input-wrap input:focus { border-color: rgba(255,255,255,0.22); }
+
+    .results { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    @media (max-width: 480px) { .results { grid-template-columns: 1fr; } }
+
+    .res { border-radius: 14px; padding: 18px 20px; }
+    .res.rs { background: rgba(245,166,35,0.07); border: 1px solid rgba(245,166,35,0.22); }
+    .res.ra { background: rgba(74,144,226,0.07); border: 1px solid rgba(74,144,226,0.22); }
+    .res .r-name { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; }
+    .res.rs .r-name { color: var(--strc); }
+    .res.ra .r-name { color: var(--sata); }
+    .res-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+    .res-row .rl { font-size: 13px; color: var(--muted); }
+    .res-row .rv { font-weight: 700; font-size: 15px; color: #fff; }
+    .res-row.hero-row .rv { font-size: 26px; letter-spacing: -0.02em; }
+    .res.rs .hero-row .rv { color: var(--strc); }
+    .res.ra .hero-row .rv { color: var(--sata); }
+    .res-divider { height: 1px; background: var(--border); margin: 10px 0; }
+    .calc-note { font-size: 11px; color: var(--muted); text-align: center; line-height: 1.65; }
+
+    /* ── COMPARE TABLE ── */
+    .cmp { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .cmp th { text-align: left; padding: 12px 18px; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); border-bottom: 1px solid var(--border); }
+    .cmp td { padding: 14px 18px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+    .cmp tr:last-child td { border-bottom: none; }
+    .cmp .lbl { color: var(--muted); font-size: 13px; width: 30%; }
+    .cmp .cs { color: var(--strc); font-weight: 600; }
+    .cmp .ca { color: var(--sata); font-weight: 600; }
+    .cmp tr:hover td { background: rgba(255,255,255,0.012); }
+
+    /* ── SOURCES ── */
+    .sources-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 40px;
+    }
+    .sources-section h3 { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+    .sources-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; }
+    .src-link {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      transition: border-color 0.12s, background 0.12s;
+      line-height: 1.45;
+    }
+    .src-link:hover { border-color: var(--border); background: var(--surface2); color: var(--text); }
+    .src-link .src-icon { flex-shrink: 0; margin-top: 1px; font-size: 14px; }
+
+    /* ── FOOTER ── */
+    footer { text-align: center; padding: 32px 24px 52px; border-top: 1px solid var(--border); }
+    .disclaimer {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 12px;
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto 16px;
+      text-align: left;
+      line-height: 1.75;
+    }
+    footer p { font-size: 12px; color: var(--muted); }
+
+    @media (max-width: 600px) {
+      .card-header { flex-direction: column; }
+      .card-yield { text-align: left; }
+      .card-body, .card-header { padding: 18px; }
+      .calc-body, .calc-head { padding: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="eyebrow">A note for Jack · June 2026</div>
+  <h1>Stop letting your<br/>cash lose value.</h1>
+  <p class="hero-sub">Two real investments that pay you steady income every month — while inflation quietly erodes money sitting in a bank account.</p>
+  <div class="hero-chips">
+    <div class="hero-chip strc">
+      <span class="big">11.5%</span>
+      <span class="lbl">STRC · annual yield</span>
+    </div>
+    <div class="hero-chip sata">
+      <span class="big">13.88%</span>
+      <span class="lbl">SATA · effective yield</span>
+    </div>
+  </div>
+</section>
+
+<div class="container">
+
+<!-- ═══ STRC ═══ -->
+<p class="section-label">Idea #1 — The Original Bitcoin-Backed Preferred</p>
+
+<div class="card">
+  <div class="card-header">
+    <div>
+      <div class="badge strc">STRC · Strategy Inc</div>
+      <div class="card-title">Strategy Preferred Stock</div>
+      <div class="card-sub">Nasdaq: STRC &nbsp;·&nbsp; Formerly MicroStrategy &nbsp;·&nbsp; Founded 1989</div>
+    </div>
+    <div class="card-yield">
+      <div class="yield-num strc">11.5%</div>
+      <div class="yield-lbl">annual yield · semi-monthly payments</div>
+    </div>
+  </div>
+
+  <div class="card-body">
+
+    <div class="plain">
+      Strategy Inc is the largest corporate Bitcoin holder on earth — they own <strong>843,738 BTC</strong>, bought for roughly $63.9 billion. Instead of buying their regular stock (which rises and falls with Bitcoin), <strong>STRC is a different animal entirely: you're lending Strategy money and they pay you a fixed income stream back</strong>, regardless of what Bitcoin does day-to-day. Michael Saylor calls this "digital credit" — engineered income built on the world's hardest asset.
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="s-lbl">Par value</div>
+        <div class="s-val">$100</div>
+        <div class="s-note">target price per share</div>
+      </div>
+      <div class="stat">
+        <div class="s-lbl">Current price</div>
+        <div class="s-val">~$88.59</div>
+        <div class="s-note">trading at a discount to par</div>
+      </div>
+      <div class="stat">
+        <div class="s-lbl">Payment schedule</div>
+        <div class="s-val">Twice/mo</div>
+        <div class="s-note">semi-monthly, approved June 2026</div>
+      </div>
+      <div class="stat">
+        <div class="s-lbl">Rate history</div>
+        <div class="s-val">↑ 7 raises</div>
+        <div class="s-note">started at 9% in July 2025</div>
+      </div>
+      <div class="stat">
+        <div class="s-lbl">Market size</div>
+        <div class="s-val">$8.5B</div>
+        <div class="s-note">world's largest preferred stock</div>
+      </div>
+      <div class="stat">
+        <div class="s-lbl">BTC held</div>
+        <div class="s-val">843,738</div>
+        <div class="s-note">~4% of all Bitcoin ever mined</div>
+      </div>
+    </div>
+
+    <!-- MECHANISM -->
+    <div class="sub-head">How the system works</div>
+    <div class="mech s">
+      <p>Saylor invented a concept he calls <strong>"Digital Credit"</strong> — structured income backed by Bitcoin as the underlying capital. Here's the cycle in plain English:</p>
+
+      <div class="flow">
+        <div class="flow-step"><span class="fi">🏦</span>Investors buy STRC shares for ~$100 each</div>
+        <span class="flow-arr">→</span>
+        <div class="flow-step"><span class="fi">₿</span>Strategy uses that cash to buy more Bitcoin</div>
+        <span class="flow-arr">→</span>
+        <div class="flow-step"><span class="fi">📈</span>BTC on the balance sheet appreciates over time</div>
+        <span class="flow-arr">→</span>
+        <div class="flow-step"><span class="fi">💸</span>Strategy pays your dividend from cash reserves and BTC gains</div>
+        <span class="flow-arr">→</span>
+        <div class="flow-step"><span class="fi">🔄</span>Rate adjusts monthly to keep the share price near $100</div>
+      </div>
+
+      <p>The <strong>variable rate is the stability mechanism</strong>. Each month, Strategy looks at where STRC is trading: if it drifts below $100, they raise the dividend to attract more buyers and push the price back up. If it trades above $100, they can dial the rate back slightly. The dividend absorbs the volatility so the price doesn't have to swing wildly.</p>
+      <p><em>Important to know:</em> STRC is <strong>not technically secured against Strategy's Bitcoin</strong> — there's no direct lien on the coins. What backs it is Strategy's overall balance sheet, their ability to keep issuing shares and buying BTC, and their $900M+ in cash reserves. In practice, 843,738 BTC is an enormous cushion — but it's worth understanding the structure honestly.</p>
+    </div>
+
+    <!-- SUSTAINABILITY -->
+    <div class="sub-head">Can they keep paying — even if Bitcoin struggles?</div>
+    <div class="callout sustain-warn">
+      <div class="ci">⚡</div>
+      <div>
+        <h4>About ~12 months of direct cash runway</h4>
+        <p>Strategy holds approximately <strong>$900M in cash reserves</strong> earmarked for preferred dividends — enough to cover roughly 12 months of payments without touching a single Bitcoin. They also recently completed a <strong>$1.5 billion debt repurchase</strong> to reduce interest obligations, strengthening their position. And if cash runs short, they hold 843,738 BTC — worth tens of billions — which they can sell selectively. Their stated philosophy: they will sell Bitcoin "when it's advantageous," not out of desperation. <a href="https://www.strategy.com/press/strategy-acquires-24869-btc-and-achieves-btc-yield-of-12-6-ytd-now-holds-843738-btc_05-18-2026" class="strc-link" target="_blank" rel="noopener">See Strategy's latest BTC acquisition →</a></p>
+      </div>
+    </div>
+
+    <!-- BITCOIN SALE CONTEXT -->
+    <div class="callout quote">
+      <div class="ci">💬</div>
+      <div>
+        <h4>"We will sell bitcoin when it's advantageous to the company — and we remain net aggregators."<br/><span style="font-size:12px; font-style:normal; color:var(--muted); display:block; margin-top:6px;">— Michael Saylor &amp; CEO Phong Le, Q4 2026 earnings call</span></h4>
+      </div>
+    </div>
+    <div class="plain" style="margin-bottom:18px; font-size:14px;">
+      In late May 2026, Strategy sold 32 BTC for $2.5M — their first ever BTC sale. It made headlines. But context matters: <strong>in the same month, they purchased 24,869 BTC for $2.01 billion</strong>, bringing their total to 843,738 BTC. Saylor explained the sale as deliberate tax-loss harvesting and a signal to markets that small BTC sales are a normal capital management tool — not a distress move. The net result of May: they added over 24,800 Bitcoin to the treasury. <a href="https://www.coindesk.com/markets/2026/06/01/analysts-agree-strategy-s-bitcoin-sale-was-immaterial-differ-on-future-signals" target="_blank" rel="noopener" style="color:var(--strc);">Read the analyst breakdown →</a>
+    </div>
+
+    <!-- TAX -->
+    <div class="callout tax">
+      <div class="ci">💡</div>
+      <div>
+        <h4>The tax treatment most people overlook</h4>
+        <p>STRC dividends are classified as <strong>Return of Capital (ROC)</strong> by the IRS — which means you do <strong>not</strong> owe income tax when you receive them. Each payment instead reduces your cost basis in the shares. Tax is only triggered when you sell, and at that point it's at long-term capital gains rates (typically 15–20%) rather than ordinary income rates (up to 37%). Strategy has confirmed 100% of 2025 distributions were ROC, and expects this treatment to continue for <strong>10 years or more</strong>. That's tax-deferred compounding — the same structural advantage as a Roth IRA, but available in a brokerage account. <a href="https://strcincome.com/learn/tax" class="strc-link" target="_blank" rel="noopener">Full tax explainer →</a></p>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="box pros">
+        <div class="box-title">Why it's worth considering</div>
+        <ul>
+          <li>Income stream not dependent on Bitcoin going up</li>
+          <li>Dividends are tax-deferred (Return of Capital) for 10+ years</li>
+          <li>World's largest preferred stock — $8.5B in market cap</li>
+          <li>Rate raised 7 times since July 2025 launch — trending up</li>
+          <li>Trading at a discount to $100 par — you buy in cheap</li>
+          <li>Semi-monthly payments starting June 2026</li>
+        </ul>
+      </div>
+      <div class="box cons">
+        <div class="box-title">Risks to understand</div>
+        <ul>
+          <li>No direct lien on BTC — unsecured preferred equity</li>
+          <li>Price has fallen to ~$88 — below the $100 par target</li>
+          <li>Cash runway is months, not decades — dependent on BTC value</li>
+          <li>Dividend can be reduced by the board at any time</li>
+          <li>Not FDIC insured — this is an investment, not a deposit</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bottom-line">
+      <strong>Bottom line:</strong> The most liquid Bitcoin-backed income product ever created, with a tax advantage that makes the real yield significantly better than the headline number suggests. Best for investors who believe in Bitcoin long-term and want income today — not a trading vehicle to flip quickly.
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══ SATA ═══ -->
+<p class="section-label">Idea #2 — Daily Income, Maximum Runway</p>
+
+<div class="card">
+  <div class="card-header">
+    <div>
+      <div class="badge sata">SATA · Strive Inc</div>
+      <div class="card-title">Strive Preferred Stock</div>
+      <div class="card-sub">Nasdaq: SATA &nbsp;·&nbsp; Bitcoin-focused asset manager &nbsp;·&nbsp; Co-founded by Vivek Ramaswamy</div>
+    </div>
+    <div class="card-yield">
+      <div class="yield-num sata">13.88%</div>
+      <div class="yield-lbl">effective yield · paid daily</div>
+    </div>
+  </div>
+
+  <div class="card-body">
+
+    <div class="plain">
+      Strive is a Bitcoin-focused investment firm — they professionally accumulate and manage Bitcoin assets. SATA is their preferred stock: <strong>you provide Strive with capital, and they pay you back with income generated from their Bitcoin treasury</strong>. Their assets back your investment 1.9× over. And as of June 16, 2026, they pay you <em>every single trading day</em> — the first daily-dividend security in U.S. capital markets history. Michael Saylor himself called Strive "the most interesting story in Bitcoin right now."
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="s-lbl">Par value</div>
+        <div class="s-val">$100</div>
+        <div class="s-note">target price per share</div>
+      </div>
+      <div class="stat">
+        <div class="s-lbl">Current price</div>
+        <div class="s-val">~$97.71</div>
+        <div class="s-note">slight discount — buy in cheap</div>
+      </div>
+      <div class="stat">
+        <div class="s-lbl">Payment schedule</div>
+        <div class="s-val">Daily</div>
+        <div class="s-note">every trading day — a U.S. first</div>
+      </div>
+      <div class="stat">
+        <div class="s-lbl">Stated rate</div>
+        <div class="s-val">13%</div>
+        <div class="s-note">13.88% effective with compounding</div>
+      </div>
+      <div class="stat">
+        <div class="s-lbl">Asset coverage</div>
+        <div class="s-val">1.9×</div>
+        <div class="s-note">BTC + cash vs. obligations</div>
+      </div>
+      <div class="stat">
+        <div class="s-lbl">BTC held</div>
+        <div class="s-val">15,009</div>
+        <div class="s-note">+ $87.6M cash + $50.5M STRC</div>
+      </div>
+    </div>
+
+    <!-- MECHANISM -->
+    <div class="sub-head">How the system works</div>
+    <div class="mech a">
+      <p>Strive's model is straightforward: <strong>accumulate as much Bitcoin as possible</strong> using capital raised through SATA, then pay SATA holders income from that growing BTC treasury. CEO Matt Cole describes it as "engineered Bitcoin-backed yield" — income you can receive without holding BTC directly or riding its volatility.</p>
+
+      <div class="flow">
+        <div class="flow-step"><span class="fi">💼</span>Investors buy SATA shares at ~$100</div>
+        <span class="flow-arr">→</span>
+        <div class="flow-step"><span class="fi">₿</span>Strive uses proceeds to buy Bitcoin (debt-free)</div>
+        <span class="flow-arr">→</span>
+        <div class="flow-step"><span class="fi">📊</span>BTC treasury grows; assets cover obligations 1.9×</div>
+        <span class="flow-arr">→</span>
+        <div class="flow-step"><span class="fi">📬</span>You receive a cash payment every trading day</div>
+        <span class="flow-arr">→</span>
+        <div class="flow-step"><span class="fi">🔄</span>Board adjusts rate monthly to hold price at $95–$105</div>
+      </div>
+
+      <p>The <strong>daily compounding</strong> is meaningful: a 13% stated annual rate paid every trading day (roughly 250 days/year) compounds to an effective yield of <strong>~13.88%</strong>. That's real money — and it starts working from day one. Strive also intentionally <em>stays unprofitable</em> — every dollar of income gets reinvested into more Bitcoin, growing the treasury that backs your dividends.</p>
+      <p><em>Debt-free matters:</em> Strive financed all 15,009 of their Bitcoin <strong>entirely through preferred equity — no debt</strong>. That means no creditors with priority claims ahead of SATA holders. You are first in line.</p>
+    </div>
+
+    <!-- SUSTAINABILITY -->
+    <div class="sub-head">Can they keep paying — even if Bitcoin struggles?</div>
+    <div class="callout sustain-ok">
+      <div class="ci">🛡️</div>
+      <div>
+        <h4>Estimated 20-year coverage at current rates</h4>
+        <p>Strive holds <strong>18 months of SATA dividends in USD and marketable securities</strong> — including $87.6M in cash, $50.5M in STRC preferred stock, and ongoing Bitcoin appreciation. Their daily dividend obligations run approximately $390,000/day, covered roughly <strong>21 times over</strong> by current assets. Independent analysts estimate the company can sustain payments for <strong>approximately 20 years</strong> at current levels. CEO Matt Cole has stated publicly that Strive could survive a full 2022-style Bitcoin crash — when BTC fell 75% over 18 months — without cutting dividends, thanks to the debt-free structure and cash reserves. <a href="https://finance.yahoo.com/markets/crypto/articles/strives-ceo-matt-cole-says-130755767.html" target="_blank" rel="noopener" style="color:var(--sata);">Read Cole's bear-market case →</a></p>
+      </div>
+    </div>
+
+    <!-- SELLOFF CONTEXT -->
+    <div class="callout quote">
+      <div class="ci">💬</div>
+      <div>
+        <h4>"The recent SATA and STRC selloff was a leverage liquidation — not a credit problem. The underlying assets are intact."<br/><span style="font-size:12px; font-style:normal; color:var(--muted); display:block; margin-top:6px;">— Matt Cole, CEO of Strive, June 2026. <a href="https://cryptobriefing.com/strive-strc-sata-leverage-liquidation/" target="_blank" rel="noopener" style="color:var(--sata);">Source →</a></span></h4>
+      </div>
+    </div>
+
+    <div class="two-col" style="margin-top:18px;">
+      <div class="box pros">
+        <div class="box-title">Why it's worth considering</div>
+        <ul>
+          <li>Highest yield of the two options at 13.88% effective</li>
+          <li>Income hits your account every single trading day</li>
+          <li>1.9× asset coverage — real, quantifiable backing</li>
+          <li>No debt ahead of you — you're first in line</li>
+          <li>~20-year coverage estimate at current rates</li>
+          <li>Saylor himself endorsed Strive's model publicly</li>
+        </ul>
+      </div>
+      <div class="box cons">
+        <div class="box-title">Risks to understand</div>
+        <ul>
+          <li>A severe BTC crash erodes the asset cushion</li>
+          <li>Board can reduce dividend rate at any time</li>
+          <li>Currently at ~$97.71 — selling quickly could be a small loss</li>
+          <li>Strive is newer and smaller than Strategy</li>
+          <li>Dividends are taxed as ordinary income (no ROC treatment)</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bottom-line">
+      <strong>Bottom line:</strong> The stronger sustainability case of the two — more coverage, no debt, and daily compounding. The tradeoff: dividends are taxed as regular income each year, and Strive is a younger company. Best for someone who wants maximum income and the security of knowing the math holds even through a crypto winter.
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ═══ CALCULATOR ═══ -->
+<p class="section-label">Run your own numbers</p>
+
+<div class="calc-card">
+  <div class="calc-head">
+    <h2>How much would you make?</h2>
+    <p>Enter any dollar amount to see projected income from both investments.</p>
+  </div>
+  <div class="calc-body">
+
+    <div class="calc-row">
+      <label>I want to invest</label>
+      <div class="input-wrap">
+        <span>$</span>
+        <input type="number" id="invest-amt" value="5000" min="0" step="100" inputmode="numeric" />
+      </div>
+    </div>
+
+    <div class="results">
+      <div class="res rs">
+        <div class="r-name">STRC · 11.5% yield</div>
+        <div class="res-row hero-row">
+          <span class="rl">Per year</span>
+          <span class="rv" id="strc-yr">$575.00</span>
+        </div>
+        <div class="res-divider"></div>
+        <div class="res-row">
+          <span class="rl">Per month</span>
+          <span class="rv" id="strc-mo">$47.92</span>
+        </div>
+        <div class="res-row">
+          <span class="rl">Per payment (semi-mo)</span>
+          <span class="rv" id="strc-semi">$23.96</span>
+        </div>
+        <div class="res-divider"></div>
+        <div class="res-row">
+          <span class="rl">After 5 yrs (reinvested)</span>
+          <span class="rv" id="strc-5yr">$8,523</span>
+        </div>
+        <div class="res-row">
+          <span class="rl">After 10 yrs (reinvested)</span>
+          <span class="rv" id="strc-10yr">$14,486</span>
+        </div>
+      </div>
+
+      <div class="res ra">
+        <div class="r-name">SATA · 13.88% eff. yield</div>
+        <div class="res-row hero-row">
+          <span class="rl">Per year</span>
+          <span class="rv" id="sata-yr">$694.00</span>
+        </div>
+        <div class="res-divider"></div>
+        <div class="res-row">
+          <span class="rl">Per month (avg)</span>
+          <span class="rv" id="sata-mo">$57.83</span>
+        </div>
+        <div class="res-row">
+          <span class="rl">Per day (avg)</span>
+          <span class="rv" id="sata-day">$2.78</span>
+        </div>
+        <div class="res-divider"></div>
+        <div class="res-row">
+          <span class="rl">After 5 yrs (reinvested)</span>
+          <span class="rv" id="sata-5yr">$9,667</span>
+        </div>
+        <div class="res-row">
+          <span class="rl">After 10 yrs (reinvested)</span>
+          <span class="rv" id="sata-10yr">$18,672</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="calc-note">Projections assume constant dividend rates and full reinvestment of income. Actual results will vary — rates can change, and these are not guaranteed returns. This calculator is for illustration only.</p>
+  </div>
+</div>
+
+
+<!-- ═══ COMPARE ═══ -->
+<p class="section-label">Side by side</p>
+
+<div class="card" style="margin-bottom: 48px;">
+  <table class="cmp">
+    <thead>
+      <tr>
+        <th class="lbl"></th>
+        <th style="color:var(--strc);">STRC</th>
+        <th style="color:var(--sata);">SATA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="lbl">Issued by</td>
+        <td class="cs">Strategy Inc (formerly MicroStrategy)</td>
+        <td class="ca">Strive Inc</td>
+      </tr>
+      <tr>
+        <td class="lbl">Annual yield</td>
+        <td class="cs">11.5%</td>
+        <td class="ca">13.88% effective</td>
+      </tr>
+      <tr>
+        <td class="lbl">Payment frequency</td>
+        <td class="cs">Twice a month</td>
+        <td class="ca">Every trading day (U.S. first)</td>
+      </tr>
+      <tr>
+        <td class="lbl">Current price</td>
+        <td class="cs">~$88.59 — trading below $100 par</td>
+        <td class="ca">~$97.71 — slight discount</td>
+      </tr>
+      <tr>
+        <td class="lbl">Tax treatment</td>
+        <td class="cs">Return of Capital — tax-deferred for 10+ years</td>
+        <td class="ca">Ordinary income — taxed each year</td>
+      </tr>
+      <tr>
+        <td class="lbl">BTC backing</td>
+        <td class="cs">843,738 BTC ($63.9B bought)</td>
+        <td class="ca">15,009 BTC + $87.6M cash</td>
+      </tr>
+      <tr>
+        <td class="lbl">Debt ahead of you</td>
+        <td class="cs">Some senior obligations exist</td>
+        <td class="ca">None — you are first in line</td>
+      </tr>
+      <tr>
+        <td class="lbl">Cash runway</td>
+        <td class="cs">~12 months direct reserves</td>
+        <td class="ca">18 months cash + ~20 yr est. coverage</td>
+      </tr>
+      <tr>
+        <td class="lbl">Asset coverage</td>
+        <td class="cs">Massive BTC treasury (not directly pledged)</td>
+        <td class="ca">1.9× formally backed</td>
+      </tr>
+      <tr>
+        <td class="lbl">Best for</td>
+        <td class="cs">Tax-efficient income + world's biggest BTC exposure</td>
+        <td class="ca">Maximum yield + strongest sustainability case</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══ SOURCES ═══ -->
+<p class="section-label">Sources & further reading</p>
+
+<div class="sources-section">
+  <h3>Everything on this page is sourced. Read more below.</h3>
+  <div class="sources-grid">
+    <a class="src-link" href="https://www.strategy.com/strc/learn" target="_blank" rel="noopener">
+      <span class="src-icon">🔗</span>Strategy.com — Official STRC explainer
+    </a>
+    <a class="src-link" href="https://news.bitcoin.com/strategys-strc-becomes-worlds-largest-preferred-stock-in-under-one-year-saylor-says/" target="_blank" rel="noopener">
+      <span class="src-icon">🔗</span>Bitcoin.com — STRC becomes world's largest preferred stock
+    </a>
+    <a class="src-link" href="https://www.strategy.com/press/strategy-acquires-24869-btc-and-achieves-btc-yield-of-12-6-ytd-now-holds-843738-btc_05-18-2026" target="_blank" rel="noopener">
+      <span class="src-icon">🔗</span>Strategy — 24,869 BTC purchased in May 2026
+    </a>
+    <a class="src-link" href="https://www.coindesk.com/markets/2026/06/01/analysts-agree-strategy-s-bitcoin-sale-was-immaterial-differ-on-future-signals" target="_blank" rel="noopener">
+      <span class="src-icon">🔗</span>CoinDesk — Analysis of Strategy's 32 BTC sale
+    </a>
+    <a class="src-link" href="https://strcincome.com/learn/tax" target="_blank" rel="noopener">
+      <span class="src-icon">🔗</span>StrcIncome — STRC Return of Capital tax treatment
+    </a>
+    <a class="src-link" href="https://stockanalysis.com/stocks/strc/dividend/" target="_blank" rel="noopener">
+      <span class="src-icon">🔗</span>StockAnalysis — STRC dividend history & yield
+    </a>
+    <a class="src-link" href="https://www.coindesk.com/markets/2026/06/01/strategy-holds-strc-dividend-at-11-5-for-fourth-straight-month" target="_blank" rel="noopener">
+      <span class="src-icon">🔗</span>CoinDesk — STRC holds 11.5% for 4th straight month
+    </a>
+    <a class="src-link" href="https://www.globenewswire.com/news-release/2026/05/14/3294824/0/en/strive-inc-announces-daily-dividends-on-sata-stock-and-first-quarter-2026-financial-results.html" target="_blank" rel="noopener">
+      <span class="src-icon">🔗</span>GlobeNewswire — Strive announces daily SATA dividends
+    </a>
+    <a class="src-link" href="https://seekingalpha.com/article/4911863-sata-13-percent-yield-preferred-stock-paying-daily-dividends" target="_blank" rel="noopener">
+      <span class="src-icon">🔗</span>Seeking Alpha — SATA deep dive: 13% yield, daily payments
+    </a>
+    <a class="src-link" href="https://finance.yahoo.com/markets/crypto/articles/strives-ceo-matt-cole-says-130755767.html" target="_blank" rel="noopener">
+      <span class="src-icon">🔗</span>Yahoo Finance — CEO Cole on SATA surviving a bear market
+    </a>
+    <a class="src-link" href="https://cryptobriefing.com/strive-strc-sata-leverage-liquidation/" target="_blank" rel="noopener">
+      <span class="src-icon">🔗</span>Crypto Briefing — Cole: "leverage flush, not a credit problem"
+    </a>
+    <a class="src-link" href="https://stocktwits.com/news-articles/markets/equity/strives-bitcoin-backed-strategys-saylor-calls-interesting-story-in-bitcoin-right-now/" target="_blank" rel="noopener">
+      <span class="src-icon">🔗</span>StockTwits — Saylor calls Strive "most interesting story in Bitcoin"
+    </a>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="disclaimer">
+    <strong>Not financial advice.</strong> This page is for educational purposes only and reflects publicly available data as of June 2026. Both products carry real investment risk and are not FDIC insured. Dividend rates are variable and can be reduced or suspended. Past performance is not a guarantee of future results. Please do your own research and consider speaking with a licensed financial advisor before investing.
+  </div>
+  <p>Compiled June 2026 · Sources linked above · Prices current as of June 20, 2026</p>
+</footer>
+
+<script>
+  const STRC = 0.115;
+  const SATA = 0.1388;
+
+  const fmt = n => '$' + n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const fmtK = n => {
+    if (n >= 1000) return '$' + (n / 1000).toLocaleString('en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 }) + 'K';
+    return fmt(n);
+  };
+
+  function update() {
+    const amt = Math.max(0, parseFloat(document.getElementById('invest-amt').value) || 0);
+
+    document.getElementById('strc-yr').textContent    = fmt(amt * STRC);
+    document.getElementById('strc-mo').textContent    = fmt(amt * STRC / 12);
+    document.getElementById('strc-semi').textContent  = fmt(amt * STRC / 24);
+    document.getElementById('strc-5yr').textContent   = fmtK(amt * Math.pow(1 + STRC, 5));
+    document.getElementById('strc-10yr').textContent  = fmtK(amt * Math.pow(1 + STRC, 10));
+
+    document.getElementById('sata-yr').textContent   = fmt(amt * SATA);
+    document.getElementById('sata-mo').textContent   = fmt(amt * SATA / 12);
+    document.getElementById('sata-day').textContent  = fmt(amt * SATA / 250);
+    document.getElementById('sata-5yr').textContent  = fmtK(amt * Math.pow(1 + SATA, 5));
+    document.getElementById('sata-10yr').textContent = fmtK(amt * Math.pow(1 + SATA, 10));
+  }
+
+  document.getElementById('invest-amt').addEventListener('input', update);
+  update();
+</script>
+
+</body>
+</html>
