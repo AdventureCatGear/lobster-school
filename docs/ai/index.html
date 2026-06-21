@@ -264,73 +264,25 @@
 </head>
 <body>
 
-<div class="brand">🦞 <b>Lobster School</b> · Beyond the Chat Box</div>
+<div class="brand">🦞 <b>AI &amp; LLMs</b> — a plain-language reference</div>
 <div class="pagetag" id="pagetag"></div>
 <div class="progress" id="progress"></div>
 
 <div class="deck" id="deck">
-
-  <!-- ═══ 1 · TITLE ═══ -->
-  <section class="slide a-violet center" id="s1">
-    <div class="inner">
-      <span class="kicker">Internal Session · CloudHealth TAMs · June 2026</span>
-      <h1 class="title">Beyond the Chat Box</h1>
-      <p class="lead center" style="margin-left:auto;margin-right:auto;">
-        Using AI &amp; LLMs in real life — what some of us are already running,
-        how it actually works, and how you can start this week.
-      </p>
-      <div class="chips mt">
-        <div class="chip">🧠 What it is</div>
-        <div class="chip">⚙️ How it works</div>
-        <div class="chip">🛠️ What I'm running</div>
-        <div class="chip">🚀 How to start</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ═══ 2 · WHY NOW ═══ -->
-  <section class="slide a-amber" id="s2">
-    <div class="inner">
-      <span class="kicker">Why this matters now</span>
-      <h2 class="title">AI stopped being a website.<br/>It became a tool you can run.</h2>
-      <div class="two mt">
-        <div class="panel">
-          <div class="pico">💬</div>
-          <div class="ptag">Then</div>
-          <div class="phead">A site you chat with</div>
-          <div class="pbody">Open a tab, type a question, copy the answer. Useful — but it forgets you, lives on someone else's computer, and only talks.</div>
-        </div>
-        <div class="panel lit">
-          <div class="pico">🤖</div>
-          <div class="ptag">Now</div>
-          <div class="phead">A capability you own &amp; automate</div>
-          <div class="pbody">Runs on your hardware or the cloud, remembers context, takes actions, and can work on real tasks while you do something else.</div>
-        </div>
-      </div>
-      <div class="stats mt">
-        <div class="stat"><div class="big">#1</div><div class="lbl">Claude Opus 4.8 leads the frontier (Jun 2026)</div></div>
-        <div class="stat"><div class="big">~1M</div><div class="lbl">tokens of context — books-worth of memory</div></div>
-        <div class="stat"><div class="big">4,500+</div><div class="lbl">models you can run free via Ollama</div></div>
-        <div class="stat"><div class="big">100k+ ⭐</div><div class="lbl">OpenClaw agent, in its first 4 months</div></div>
-        <div class="stat"><div class="big">40%</div><div class="lbl">of enterprise apps will use AI agents by end of 2026 (Gartner)</div></div>
-      </div>
-      <div class="banner">You don't need to be an engineer. You need a <b>map</b> — that's the rest of this deck.</div>
-    </div>
-  </section>
 
   <!-- ═══ 3 · THE MAP / 4 LAYERS ═══ -->
   <section class="slide a-blue" id="s3">
     <div class="inner">
       <span class="kicker">The mental model</span>
       <h2 class="title">Four layers, top to bottom</h2>
-      <p class="lead">Almost everything you'll hear about — every tool, every buzzword — slots into one of these four.</p>
+      <p class="lead">Almost every tool and buzzword out there slots into one of these four.</p>
       <div class="layers mt">
         <div class="layer"><div class="ln">1</div><div><div class="lname">The Model — the "brain"</div><div class="ldesc">The trained weights that do the thinking.</div></div><div class="lex">Qwen 3.6 · Llama 4 · Claude · GPT</div></div>
         <div class="layer"><div class="ln">2</div><div><div class="lname">Where it runs</div><div class="ldesc">Your own device, or rented in the cloud.</div></div><div class="lex">Mac / PC / phone ↔ an API</div></div>
         <div class="layer"><div class="ln">3</div><div><div class="lname">How you get &amp; launch it</div><div class="ldesc">Download the model and start it up.</div></div><div class="lex">Hugging Face · Ollama · LM Studio</div></div>
         <div class="layer"><div class="ln">4</div><div><div class="lname">How you use it</div><div class="ldesc">Just chat with it — or let it take actions.</div></div><div class="lex">Open WebUI ↔ OpenClaw / Hermes</div></div>
       </div>
-      <div class="banner">Keep this picture in your head and nothing else today will feel like jargon.</div>
+      <div class="banner">Four layers — that's the whole map. Everything else hangs off these.</div>
     </div>
   </section>
 
@@ -525,77 +477,12 @@
     </div>
   </section>
 
-  <!-- ═══ 12 · YOUR ON-RAMP ═══ -->
-  <section class="slide a-teal" id="s12">
-    <div class="inner">
-      <span class="kicker">Your on-ramp</span>
-      <h2 class="title">Start this week — pick a level</h2>
-      <div class="levels mt">
-        <div class="level">
-          <div class="lvtag">Level 0 · Today</div>
-          <div class="lvh">Use a Pro chat app well</div>
-          <ul>
-            <li>ChatGPT or Claude on phone + desktop</li>
-            <li>Try Projects, voice, and file uploads</li>
-            <li>Learn 3 prompts you'll reuse weekly</li>
-          </ul>
-          <div class="cmd"><code># cost: ~$20/mo · setup: 0 min</code></div>
-        </div>
-        <div class="level">
-          <div class="lvtag">Level 1 · This week</div>
-          <div class="lvh">Run a model locally</div>
-          <ul>
-            <li>Install Ollama (Mac / Win / Linux)</li>
-            <li>Pull a model and chat with it</li>
-            <li>Add Open WebUI for a ChatGPT-style window</li>
-          </ul>
-          <div class="cmd"><code>ollama run qwen3.6</code></div>
-        </div>
-        <div class="level">
-          <div class="lvtag">Level 2 · Go further</div>
-          <div class="lvh">Give an agent a real job</div>
-          <ul>
-            <li>Try OpenClaw, Hermes, or Claude Code</li>
-            <li>Point it at a real task: tidy files, summarize a folder</li>
-            <li>Let it run on a schedule</li>
-          </ul>
-          <div class="cmd"><code># it acts, you approve</code></div>
-        </div>
-      </div>
-      <div class="banner">You can finish <b>Level 1 in 15 minutes</b> tonight.</div>
-    </div>
-  </section>
-
-  <!-- ═══ 13 · LET'S TALK ═══ -->
-  <section class="slide a-blue" id="s13">
-    <div class="inner">
-      <span class="kicker">Let's talk</span>
-      <h2 class="title">What are we each doing — and what's next?</h2>
-      <div class="prompts mt">
-        <div class="prompt"><span class="pq">🗣️</span>What are you already using AI for?</div>
-        <div class="prompt"><span class="pq">⏱️</span>Where would 30 min/day back actually help?</div>
-        <div class="prompt"><span class="pq">🚧</span>What's stopping you from trying local?</div>
-        <div class="prompt"><span class="pq">🧭</span>What should we standardize as a team?</div>
-      </div>
-      <div class="mt-s" style="margin-top:22px;">
-        <div class="links">
-          <a href="https://huggingface.co" target="_blank" rel="noopener">🤗 huggingface.co</a>
-          <a href="https://ollama.com" target="_blank" rel="noopener">🦙 ollama.com</a>
-          <a href="https://lmstudio.ai" target="_blank" rel="noopener">🖥️ lmstudio.ai</a>
-          <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener">🦞 OpenClaw</a>
-          <a href="https://github.com/nousresearch/hermes-agent" target="_blank" rel="noopener">🪶 Hermes</a>
-        </div>
-      </div>
-      <div class="banner">Pick your level before you leave this call — then tell the group next time.</div>
-    </div>
-  </section>
-
 </div><!-- /deck -->
 
 <!-- ═══ CHROME ═══ -->
 <div class="nav">
   <button id="prev" aria-label="Previous slide">‹</button>
-  <span class="count" id="count">1 / 13</span>
+  <span class="count" id="count">1 / 9</span>
   <button id="next" aria-label="Next slide">›</button>
 </div>
 <div class="hint fade">← → or swipe · <b>F</b> fullscreen</div>
